@@ -1,6 +1,6 @@
 describe 'Unit: Home module', ->
 
-  beforeEach module('ngBoilerplate.home')
+  beforeEach module('Twittah.home')
 
   it 'should have a dummy test', ->
     expect(true).to.be.true

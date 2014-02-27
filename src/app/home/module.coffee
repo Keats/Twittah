@@ -3,7 +3,7 @@ modules = [
   'ui.router.state',
 ]
 
-home = angular.module 'ngBoilerplate.home', modules
+home = angular.module 'Twittah.home', modules
 
 homeConfig = ($stateProvider) ->
   $stateProvider.state "home",
