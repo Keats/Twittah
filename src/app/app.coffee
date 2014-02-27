@@ -3,6 +3,7 @@ modules = [
   'templates',
 
   'Twittah.home',
+  'twittahServices',
 
   'ui.router.state'
 ]
