@@ -1,7 +1,6 @@
 build/
-libs/
-node_modules/
 .sass-cache/
+node_modules/protractor/selenium/
 
 *.iml
 .idea/
