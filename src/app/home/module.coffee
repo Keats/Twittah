@@ -23,6 +23,8 @@ class HomeCtrl
   constructor: (@scope, @apiService) ->
     @scope.tweets = []
     @scope.hasNewTweets = true
+    # Prevents user from spamming the button
+    @scope.queried = false
 
     @scope.getNewTweets = @getNewTweets
     @scope.getNewTweets()
@@ -32,11 +34,18 @@ class HomeCtrl
   # Grabs new tweets from the API service and sets some data on the scope so
   # we can display everything correctly
   getNewTweets: =>
+    # Don't do anything if we are already in the middle of a request
+    if @scope.queried
+      return
+
+    @scope.queried = true
     @apiService.getTweets().then ((result) =>
+      @scope.queried = false
       @scope.tweets = result.tweetsList
       @scope.hasNewTweets = result.numberNewTweets isnt 0
       @scope.errored = false
     ), (error) =>
+      @scope.queried = false
       @scope.errored = true
 
   # Sets the predicate for the order of the tweets
