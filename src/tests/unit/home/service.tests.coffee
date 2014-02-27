@@ -1,7 +1,7 @@
 describe 'Unit: Twittah service', ->
   $httpBackend = null
-  twittahService = null
-  apiURL =  'http://adaptive-test-api.herokuapp.com/tweets.json'
+  myApiService = null
+  apiURL = 'http://adaptive-test-api.herokuapp.com/tweets.json'
 
   fakeResponses = [
     created_at: "2012-09-27T16:13:31Z"
@@ -22,12 +22,26 @@ describe 'Unit: Twittah service', ->
   ]
 
   beforeEach module('twittahServices')
+  beforeEach inject((apiService) ->
+    myApiService = apiService
+  )
+
   beforeEach inject(($injector) ->
     $httpBackend = $injector.get '$httpBackend'
-    twittahService = $injector.get 'twittahService'
-
     $httpBackend.when('GET', apiURL).respond(fakeResponses)
   )
 
+  afterEach ->
+    $httpBackend.verifyNoOutstandingExpectation()
+    $httpBackend.verifyNoOutstandingRequest()
+
   it 'should have a twittah service', ->
-    expect(twittahService).not.to.be.null
+    expect(myApiService).not.to.be.null
+    expect(myApiService).not.to.be.undefined
+
+  it 'should store data received from the API', ->
+    tweets = []
+    myApiService.getTweets().then (result) ->
+      tweets = result.data
+    $httpBackend.flush()
+    expect(tweets).to.deep.equal fakeResponses
