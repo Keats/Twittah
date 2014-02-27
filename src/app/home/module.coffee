@@ -22,13 +22,15 @@ class HomeCtrl
 
   constructor: (@scope, @apiService) ->
     @scope.tweets = []
+    @scope.getNewTweets = @getNewTweets
+    @scope.getNewTweets()
 
-    @getNewTweets()
-
-  getNewTweets: ->
-    @apiService.getTweets().then (result) =>
+  getNewTweets: =>
+    @apiService.getTweets().then ((result) =>
       @scope.tweets = result.tweetsList
       @scope.hasNewTweets = result.numberNewTweets isnt 0
+    ), (error) =>
+      console.log error
 
 
 home.controller 'HomeCtrl', HomeCtrl

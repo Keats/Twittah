@@ -7,3 +7,5 @@
     <cite>{{ tweet.user_handle }}</cite>
   </blockquote>
 </div>
+
+<button ng-hide="tweets.length === 0" ng-click="getNewTweets()">Load more!</button>
