@@ -15,4 +15,21 @@ describe 'Integration: Home page', ->
     browser.findElements(By.css('button')).then (result) ->
       expect(result.length).to.be.equal 3
 
+  it 'should load tweets initially', ->
+    ptor.sleep(2000)
+    browser.findElements(By.css('.tweet')).then (result) ->
+      expect(result.length).to.be.equal 2
 
+  it 'should load more when clicking the load more button', ->
+    ptor.sleep(2000)
+    browser.findElements(By.css('.tweet')).then (result) ->
+      expect(result.length).to.be.equal 2
+
+    loadMore = element(By.css('.loadButton'))
+    loadMore.click()
+    ptor.sleep(2000)
+    loadMore.click()
+    ptor.sleep(2000)
+
+    browser.findElements(By.css('.tweet')).then (result) ->
+      expect(result.length).to.be.above 2
