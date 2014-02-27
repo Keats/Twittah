@@ -6,7 +6,6 @@ A twitter for soda only.
 Using AngularJS.
 
 ## Install
-To start your own project, you can clone that project, get rid of the history, change the git origin and start working by following the snippet below
 ```bash
 $ git clone https://github.com/Keats/Twittah.git && cd Twittah
 $ git submodule init
