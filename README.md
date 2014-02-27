@@ -30,10 +30,12 @@ $ gulp build --require coffee-script/register --type dist
 
 To run units + integrations tests (you need the build directory for the integration tests to run):
 ```bash
+$ ./node_modules/protractor/bin/webdriver-manager update
 $ gulp build --require coffee-script/register
 $ cd build && python -m SimpleHTTPServer 8001 > /dev/null 2>&1 &
 $ gulp ci --require coffee-script/register
 ```
+The webdriver-manager update command is necessary to get the webdriver for protractor.
 
 ## Known bug in the build process
 The default gulp task should reload the page on every change but doesn't it with an issue somewhere with karma https://github.com/Keats/ng-boilerplate/issues/1 so reloading manually is needed!
