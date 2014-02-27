@@ -22,6 +22,7 @@ The default one watches over the files and runs the associated tasks when needed
 ```bash
 $ gulp --require coffee-script/register
 ```
+If you get the 'Cannot GET /', just reload the page as the browser will have launched before the server.
 
 To build the version to distribute, run the following:
 ```bash
