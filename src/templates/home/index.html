@@ -1,12 +1,13 @@
 <h1>Twittah</h1>
 
-<button ng-click="setOrderByPredicate('sentiment')">Order by sentiment</button>
-<button ng-click="setOrderByPredicate('updated_at')">Order by update date</button>
+<button ng-click="setOrderByPredicate('sentiment')" class="orderBySentiment">Order by sentiment</button>
+<button ng-click="setOrderByPredicate('updated_at')" class="orderByDate">Order by update date</button>
 
 <div ng-repeat="tweet in tweets | orderBy:predicate" class="tweet">
   <blockquote>
     <p>{{ tweet.message }}
-    <cite>{{ tweet.user_handle }} - {{ tweet.updated_at }} - Sentiment: {{ tweet.sentiment }}</cite>
+    <cite>{{ tweet.user_handle }} — <span class="updated-at">{{ tweet.updated_at }}</span> — Sentiment: <span class="sentiment">{{ tweet.sentiment }}</span></cite>
+    </p>
   </blockquote>
 </div>
 
