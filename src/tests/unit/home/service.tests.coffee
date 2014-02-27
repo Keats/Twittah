@@ -45,3 +45,15 @@ describe 'Unit: Twittah service', ->
       tweets = result.data
     $httpBackend.flush()
     expect(tweets).to.deep.equal fakeResponses
+
+  it 'should not add tweets we already got', ->
+    tweets = []
+    # Lots of copy and paste, improve that later
+    myApiService.getTweets().then (result) ->
+      tweets = result.data
+    myApiService.getTweets().then (result) ->
+      tweets = result.data
+    $httpBackend.flush()
+
+    expect(tweets).to.deep.equal fakeResponses
+
