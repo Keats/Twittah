@@ -3,7 +3,7 @@
 <div ng-repeat="tweet in tweets">
   <blockquote>
     <p>{{ tweet.message }}
-    <cite>{{ tweet.user_handle }}</cite>
+    <cite>{{ tweet.user_handle }} - {{ tweet.updated_at }} - Sentiment: {{ tweet.sentiment }}</cite>
   </blockquote>
 </div>
 
@@ -11,4 +11,4 @@
 <p ng-show="!hasNewTweets">Dang, you've already seen the tweets I was going to show you, try again!</p>
 <p ng-show="errored">Oops, something went wrong with the server, try again!</p>
 
-<button ng-hide="tweets.length === 0" ng-click="getNewTweets()">Load more!</button>
+<button ng-hide="tweets.length === 0 || errored" ng-click="getNewTweets()">Load more!</button>

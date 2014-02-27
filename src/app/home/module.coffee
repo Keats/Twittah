@@ -27,6 +27,8 @@ class HomeCtrl
     @scope.getNewTweets = @getNewTweets
     @scope.getNewTweets()
 
+  # Grabs new tweets from the API service and sets some data on the scope so
+  # we can display everything correctly
   getNewTweets: =>
     @apiService.getTweets().then ((result) =>
       @scope.tweets = result.tweetsList
