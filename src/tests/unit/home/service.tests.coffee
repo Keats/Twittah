@@ -41,19 +41,28 @@ describe 'Unit: Twittah service', ->
 
   it 'should store data received from the API', ->
     tweets = []
+    numberNewTweets = null
+
     myApiService.getTweets().then (result) ->
-      tweets = result.data
+      tweets = result.tweetsList
+      numberNewTweets = result.numberNewTweets
     $httpBackend.flush()
+
     expect(tweets).to.deep.equal fakeResponses
+    expect(numberNewTweets).to.equal 2
 
   it 'should not add tweets we already got', ->
     tweets = []
+    numberNewTweets = null
+
     # Lots of copy and paste, improve that later
     myApiService.getTweets().then (result) ->
-      tweets = result.data
+      tweets = result.tweetsList
     myApiService.getTweets().then (result) ->
-      tweets = result.data
+      tweets = result.tweetsList
+      numberNewTweets = result.numberNewTweets
     $httpBackend.flush()
 
     expect(tweets).to.deep.equal fakeResponses
+    expect(numberNewTweets).to.equal 0
 

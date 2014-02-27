@@ -13,17 +13,23 @@ apiService = ($http) ->
     tweets
 
   # Gets tweets from API, checks for duplicates and return the updated list of tweets
+  # along with the number of new tweets we got from the API
   api.getTweets = ->
-    $http.get(apiURL).success (data) ->
+    $http.get(apiURL).then (result) ->
       newTweets = []
-      for tweet in data
+      for tweet in result.data
         if tweet.id not in tweetsId
           newTweets.push tweet
 
       for newTweet in newTweets
         tweetsId.push newTweet.id
 
-      tweets.push newTweets
+      tweets = tweets.concat newTweets
+      result =
+        tweetsList: tweets
+        numberNewTweets: newTweets.length
+
+      return result
 
   api
 
