@@ -10,3 +10,14 @@
 @import "foundation";
 
 // Import your app below
+
+// should be in a separate file
+button {
+  margin: 20px;
+}
+
+.label {
+  display: block;
+  font-size: 1.5em;
+  padding: 10px;
+}

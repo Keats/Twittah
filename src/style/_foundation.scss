@@ -2,6 +2,17 @@
 // here as well
 @import "snowflake/foundation/settings";
 
+// Disabled by default in snowflake
+$include-html-button-classes: true;
+$include-html-classes: true;
+$include-html-grid-classes: true;
+
+@import "snowflake/foundation/components/global";
+@import "snowflake/foundation/components/buttons";
+@import "snowflake/foundation/components/type";
+@import "snowflake/foundation/components/grid";
+@import "snowflake/foundation/components/labels";
+
 @import "snowflake/foundation/components/global";
 @import "snowflake/foundation/components/buttons";
 @import "snowflake/foundation/components/forms";
