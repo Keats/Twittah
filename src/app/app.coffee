@@ -12,7 +12,7 @@ appModule = angular.module 'Twittah', modules
 
 
 appConfig = ($stateProvider, $urlRouterProvider) ->
-  $urlRouterProvider.otherwise '/home'
+  $urlRouterProvider.otherwise '/'
 
 appConfig.$inject = ['$stateProvider', '$urlRouterProvider']
 appModule.config appConfig
