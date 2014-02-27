@@ -22,6 +22,8 @@ class HomeCtrl
 
   constructor: (@scope, @apiService) ->
     @scope.tweets = []
+    @scope.hasNewTweets = true
+
     @scope.getNewTweets = @getNewTweets
     @scope.getNewTweets()
 
@@ -29,8 +31,9 @@ class HomeCtrl
     @apiService.getTweets().then ((result) =>
       @scope.tweets = result.tweetsList
       @scope.hasNewTweets = result.numberNewTweets isnt 0
+      @scope.errored = false
     ), (error) =>
-      console.log error
+      @scope.errored = true
 
 
 home.controller 'HomeCtrl', HomeCtrl
