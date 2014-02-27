@@ -27,6 +27,8 @@ class HomeCtrl
     @scope.getNewTweets = @getNewTweets
     @scope.getNewTweets()
 
+    @scope.setOrderByPredicate = @setOrderByPredicate
+
   # Grabs new tweets from the API service and sets some data on the scope so
   # we can display everything correctly
   getNewTweets: =>
@@ -36,6 +38,14 @@ class HomeCtrl
       @scope.errored = false
     ), (error) =>
       @scope.errored = true
+
+  # Sets the predicate for the order of the tweets
+  # If the new predicate is the same as the old, return the opposite ordering
+  setOrderByPredicate: (predicate) =>
+    if predicate is @scope.predicate
+      @scope.predicate = "-#{ predicate }"
+    else
+      @scope.predicate = predicate
 
 
 home.controller 'HomeCtrl', HomeCtrl
