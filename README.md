@@ -10,7 +10,7 @@ Using AngularJS.
 $ git clone https://github.com/Keats/Twittah.git && cd Twittah
 $ git submodule init
 $ git submodule update
-$ sudo npm -g install gulp
+$ sudo npm -g install gulp@3.5.2 # gulp 3.5.5 broke coffeescript support somehow
 $ npm rebuild
 $ gulp --require coffee-script/register
 ```
